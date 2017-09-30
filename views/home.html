@@ -1,0 +1,191 @@
+{% extends "layouts/main.html"%}
+{% block body %}
+    <div class="container-fluid portfolio-container">
+        <div class="row">
+            <div class="about-us col-sm-10 col-sm-offset-1">
+                <h3 class="editable" data-content-id="home.aboutUs">{{ strings.home.aboutUs }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="portfolio-heading col-sm-10 col-sm-offset-1">
+                <h2 id="games" class="editable" data-content-id="home.portfolioHeading">{{ strings.home.portfolioHeading }}</h2>
+                <div class="horizontal-break bold"></div>
+            </div>
+        </div>
+        {% for portfolioRow in portfolioRows %}
+        <div class="row">
+            {% for portfolio in portfolioRow %}
+            <div class="col-sm-4">
+                <a href="/project/{{ portfolio.id }}" class="thumbnail dropload" data-id="{{ portfolio.id }}" data-role="cover">
+                {% if enableEditMode and portfolio.id %}
+                    <span class="glyphicon glyphicon-remove delete-project" title="Delete"></span>
+                {% endif %}
+                    <img src="/img/{{ portfolio.img }}" alt="" />
+                    <div class="thumbnail-overlay">
+                        <h4 class="editable" data-content-id="project:{{ portfolio.id }}.title">{{ portfolio.title }}</h4>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div class="our-games">
+            <!-- <a href="" class="btn btn-primary btn-lg">CHECK OUT OUR GAMES</a> -->
+        </div>
+    </div>
+
+    <div class="container-fluid platforms-container">
+        <h2 class="editable" data-content-id="home.platforms">{{ strings.home.platforms }}</h2>
+        <div class="horizontal-break bold"></div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/platform-apstore.png" class="img-responsive center-block" alt="App Store"/>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/platform-google-play.png" class="img-responsive center-block" alt="Google Play"/>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/platform-windows-phone.png" class="img-responsive center-block" alt="Windows Phone"/>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/platform-mac-pc.png" class="img-responsive center-block" alt="Mac and PC"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 col-sm-12">
+                        <img src="/icons/platform-virtual-reality.png" class="img-responsive center-block" alt="Virtual Reality"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid tools-container">
+        <h2 class="editable" data-content-id="home.tools">{{ strings.home.tools }}</h2>
+        <div class="horizontal-break bold"></div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-8 col-sm-offset-2">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/tool-unity.png" class="img-responsive center-block" alt="Unity"/>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/tool-cocos.png" class="img-responsive center-block" alt="Cocos"/>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/tool-html5.png" class="img-responsive center-block" alt="HTML5"/>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <img src="/icons/tool-adobe-air.png" class="img-responsive center-block" alt="Adobe AIR"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid offers-container">
+        <h2 id="about" class="editable" data-content-id="home.offers.title">{{ strings.home.offers.title }}</h2>
+        <div class="horizontal-break white"></div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-art"></div>
+                        <h3>Art</h3>
+                        <p class="editable" data-content-id="home.offer.art">
+                            {{ strings.home.offer.art }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-code"></div>
+                        <h3>Code</h3>
+                        <p class="editable" data-content-id="home.offer.code">
+                            {{ strings.home.offer.code }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-crossplatform"></div>
+                        <h3>Cross Platform</h3>
+                        <p class="editable" data-content-id="home.offer.crossPlatform">
+                            {{ strings.home.offer.crossPlatform }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-sound"></div>
+                        <h3>Sound</h3>
+                        <p class="editable" data-content-id="home.offer.sound">
+                            {{ strings.home.offer.sound }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-animation"></div>
+                        <h3>Animation</h3>
+                        <p class="editable" data-content-id="home.offer.animation">
+                            {{ strings.home.offer.animation }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-technology"></div>
+                        <h3>Technology</h3>
+                        <p class="editable" data-content-id="home.offer.technology">
+                            {{ strings.home.offer.technology }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-game_design"></div>
+                        <h3>Game Design</h3>
+                        <p class="editable" data-content-id="home.offer.gameDesign">
+                            {{ strings.home.offer.gameDesign }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-story_writing"></div>
+                        <h3>Story Writing</h3>
+                        <p class="editable" data-content-id="home.offer.storyWriting">
+                            {{ strings.home.offer.storyWriting }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-analytics"></div>
+                        <h3>Analytics</h3>
+                        <p class="editable" data-content-id="home.offer.analytics">
+                            {{ strings.home.offer.analytics }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-localization"></div>
+                        <h3>Localization</h3>
+                        <p class="editable" data-content-id="home.offer.localization">
+                            {{ strings.home.offer.localization }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-support"></div>
+                        <h3>Marketing &amp; Support</h3>
+                        <p class="editable" data-content-id="home.offer.support">
+                            {{ strings.home.offer.support }}
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="services-icon icon-testing"></div>
+                        <h3>Testing</h3>
+                        <p class="editable" data-content-id="home.offer.testing">
+                            {{ strings.home.offer.testing }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="make-a-game">
+            <a href="/sayhello" class="btn btn-primary btn-lg btn-white">MAKE A GAME WITH US</a>
+        </div>
+    </div>
+{% endblock %}

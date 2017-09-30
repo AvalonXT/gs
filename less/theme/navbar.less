@@ -1,0 +1,39 @@
+.navbar-brand {
+    font-family: Audiowide;
+    font-size: 36px;
+    a {
+        &,
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          color: #fff;
+        }
+    }
+    @media (min-width: 560px) {
+        font-size: 60px;
+    }
+    @media (min-width: 768px) {
+        margin-left: 50% !important;
+        a {
+            position: relative;
+            left: -50%;
+            white-space: nowrap;
+        }
+    }
+    @media (min-width: 992px) {
+        font-size: 84px;
+    }
+}
+
+.navbar-default .navbar-nav a {
+    color: #F4F9FD;
+    text-transform: uppercase;
+    @media (min-width: 768px) {
+        padding-top: 76px;
+        padding-bottom: 45px;
+    }
+    @media (min-width: 992px) {
+        padding-top: 84px;
+        padding-bottom: 37px;
+    }
+}

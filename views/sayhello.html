@@ -1,0 +1,49 @@
+{% extends "layouts/main.html"%}
+{% block body %}
+<div class="container-fluid portfolio-container">
+    <div class="row">
+        <div class="portfolio-heading col-sm-10 col-sm-offset-1">
+            <h2 id="games" class="editable" data-content-id="sayhello.heading">{{ strings.sayhello.heading }}</h2>
+            <div class="horizontal-break bold"></div>
+        </div>
+    </div>
+
+    <div class="row contact-info">
+        <p class="text-center sayhello-email">Email: <span class="editable" data-content-id="sayhello.email">{{ strings.sayhello.email }}</span></p>
+    </div>
+
+    <form method="post" class="center-block clearfix feedback-form">
+        {% if enableEditMode or sentOk %}
+        <div class="alert alert-success editable" role="alert" data-content-id="sayhello.sent">
+            {{ strings.sayhello.sent }}
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="contact-name">Your Name (REQUIRED)</label>
+            <input type="text" name="name" class="form-control" id="contact-name" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <label for="contact-email">Your Email (REQUIRED)</label>
+            <input type="email" name="email" class="form-control" id="contact-email" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="contact-message">Your Message</label>
+            <textarea name="message" class="form-control" id="contact-message" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg pull-right">SEND</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block footerScript %}
+    <script>
+        (function($){
+            $('.navbar-nav .active').removeClass('active');
+            $('.menu-sayhello').addClass('active');
+        }(jQuery));
+    </script>
+{% endblock %}

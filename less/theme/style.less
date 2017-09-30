@@ -1,0 +1,224 @@
+@import url(http://fonts.googleapis.com/css?family=Audiowide|Roboto:400,100,700);
+@import "navbar.less";
+@import "login.less";
+@import "../../node_modules/bootstrap/less/variables.less";
+@import "../../node_modules/bootstrap/less/mixins.less";
+
+@media (min-width: 992px) {
+    .footer-left-col{text-align: left}
+    .footer-right-col{text-align: right}
+}
+
+@orange: #f7a049;
+
+.navbar-row {
+  background-image: url(/img/sky.jpg);
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+.services-icon{
+    margin: 40px auto 0 auto
+}
+.social-icons {
+    margin-top: 22px;
+    margin-bottom: 22px;
+    .fa-circle{
+        color: @orange
+    }
+}
+.thumbnail {
+    position:relative
+}
+.thumbnail-overlay {
+    background-color: #1dc6df;
+    opacity: 0;
+    position:absolute;
+    top: 4px; right:4px; left: 4px; bottom: 4px;
+    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, border 0.4s ease-in-out,
+        opacity 0.5s ease-in-out;
+    &:hover,
+    &:focus {
+        background-color: rgba(29,198,223, 0.90);
+        opacity: 1;
+        border: 10px solid #fff;
+        box-shadow: 0 0 5px rgba(34,34,34,.15);
+    }
+    h4 {
+        width: 98%;
+        height: auto;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        color: #fff;
+        font-weight: 700;
+    }
+    &::before {
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+        content: ' ';
+    }
+}
+.btn-white {
+    background-color: #61C1C8;
+    border: 2px solid #fff;
+    &:hover,
+    &:focus {
+        border: 2px solid #fff;
+        background-color: darken(#61C1C8, 10%);
+    }
+}
+.orange-text {
+    color: @orange;
+}
+.about-us {
+    padding: 60px 0;
+    text-align: center;
+}
+.portfolio-heading {
+    padding: 40px 0 20px 0;
+    text-align: center;
+}
+.our-games {
+    text-align: center;
+    margin: 30px 0;
+}
+.make-a-game {
+    text-align: center;
+    margin: 30px 0;
+}
+.platforms-container {
+    background-color: #DAE5E8;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.what-we-do-container {
+    background-color: #434E5F;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    color: #F9F9F9;
+}
+
+.footer-container {
+    background-color: #272D3A;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    color: #F9F9F9;
+    a {
+        color: #F9F9F9;
+    }
+    a:hover {
+        color: #61c1c8;
+        text-decoration: none;
+    }
+}
+
+.dz-preview {
+    display: none;
+}
+
+.tools-container {
+    background-color: #EBEBEB;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.offers-container {
+    background-color: #61C1C8;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    color: #F9F9F9;
+}
+
+.horizontal-break {
+  height: 1px;
+  width: 50px;
+  margin: 20px auto 25px;
+}
+
+.horizontal-break.bold {
+  height: 5px;
+  width: 100px;
+  background-color: #4A5365;
+}
+
+.horizontal-break.white {
+  height: 5px;
+  width: 100px;
+  background-color: #F9F9F9;
+}
+
+.editmode,
+.editmode:hover, {
+    cursor:text;
+    color: @orange;
+    text-decoration: none;
+}
+
+.editable:focus {
+    outline: none;
+}
+
+.delete-project {
+    color: #D52A2A;
+    background-color: #FABFBF;
+    z-index: 1000;
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    border-radius: 4px;
+}
+.scrollup {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 10px;
+    right: 5px;
+    display: none;
+    text-indent: -9999px;
+    background: url('/img/back-to-top.png') no-repeat;
+}
+.project-tags {
+    padding-left: 36px;
+    p {
+        display: list-item;
+        list-style-position: inside;
+        list-style-image: url('/img/list-mark.png');
+    }
+}
+@media (max-width: @screen-xs-max) {
+    .project-tags {
+        .clearfix;
+        margin-top: 18px;
+        padding-left: 0px;
+        p {
+            float: left;
+            margin-left: 26px;
+        }
+    }
+}
+.sayhello-email {
+    margin-top: 24px;
+}
+/* for editable regions */
+span p {
+    display: inline;
+}
+.feedback-form {
+    max-width: 600px;
+    margin-bottom:50px;
+    margin-top: 40px;
+}
+.contact-info {
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 1;
+}
+.project-screenshot {
+    margin-bottom: 28px;
+}

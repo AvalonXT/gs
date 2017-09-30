@@ -1,0 +1,84 @@
+{% extends "layouts/main.html"%}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row" style="margin-bottom:26px;">
+            <div class="col-sm-10 col-sm-offset-2">
+                <h2 style="text-align:left">{{ project.title }}</h2>
+            </div>
+        </div>
+        {%if projectImageExists %}
+            <div class="row">
+                <img src="/img/proj-{{ project.id }}-orig.jpg"
+                     class="img-responsive center-block"
+                     style="width:100%"/>
+            </div>
+        {% endif %}
+        <div class="row" style="margin-top:40px">
+            <div class="col-sm-8 col-sm-offset-1 editable"
+                 data-content-id="project:{{ project.id }}.description"
+                 data-content-type="html">
+                {{ project.description|safe }}
+            </div>
+            <div class="col-sm-2 editable project-tags"
+                 data-content-id="project:{{ project.id }}.tags"
+                 data-content-type="html">
+                {{ project.tags|safe }}
+            </div>
+        </div>
+        <div class="row" style="text-align:center">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h2>Screenshots</h2>
+                <div class="horizontal-break bold"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                {% if enableEditMode or screen1ImageExists %}
+                <img src="/img/{% if screen1ImageExists %}proj-{{ project.id }}-screen-1{% else %}proj-noscreen{% endif %}.jpg"
+                     class="dropload project-screenshot img-responsive center-block"
+                     data-id="{{ project.id }}" data-role="screen-1" />
+                {% endif %}
+            </div>
+            <div class="col-sm-4">
+                {% if enableEditMode or screen2ImageExists %}
+                <img src="/img/{% if screen2ImageExists %}proj-{{ project.id }}-screen-2{% else %}proj-noscreen{% endif %}.jpg"
+                     class="dropload project-screenshot img-responsive center-block"
+                     data-id="{{ project.id }}" data-role="screen-2" />
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                {% if enableEditMode or screen3ImageExists %}
+                <img src="/img/{% if screen3ImageExists %}proj-{{ project.id }}-screen-3{% else %}proj-noscreen{% endif %}.jpg"
+                     class="dropload project-screenshot img-responsive center-block"
+                     data-id="{{ project.id }}" data-role="screen-3" />
+                {% endif %}
+            </div>
+            <div class="col-sm-4">
+                {% if enableEditMode or screen4ImageExists %}
+                <img src="/img/{% if screen4ImageExists %}proj-{{ project.id }}-screen-4{% else %}proj-noscreen{% endif %}.jpg"
+                     class="dropload project-screenshot img-responsive center-block"
+                     data-id="{{ project.id }}" data-role="screen-4" />
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row" style="text-align:center">
+            <div class="col-sm-10 col-sm-offset-1">
+                <h2>Other Projects</h2>
+                <div class="horizontal-break bold"></div>
+            </div>
+        </div>
+        <div class="row">
+            {% for project in otherProjects %}
+            <div class="col-sm-4">
+                <a href="/project/{{ project.id }}" class="thumbnail">
+                    <img src="/img/{{ project.img }}" alt="" />
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>GameSpace</title>
+
+    <!-- Bootstrap -->
+    <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/sprites.css" rel="stylesheet">
+    <link href="/vendor/fa/css/font-awesome.css" rel="stylesheet">
+
+    <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    </head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="row navbar-row">
+                <div class="navbar-header col-sm-6 col-md-8">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-links">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">
+                        <a href="/">GameSpace</a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 collapse navbar-collapse" id="nav-links">
+                    <ul class="nav navbar-nav">
+                        <li class="menu-home active"><a href="/#games">Games</a></li>
+                        <li><a href="/#about">About</a></li>
+                        <li class="menu-sayhello"><a href="/sayhello">Say Hello</a></li>
+                        {% if loggedIn %}
+                        <li><a href="/logout">Logout</a></li>
+                            {% if editMode %}
+                            <li><a href="/noeditmode">Edit mode: On</a></li>
+                            {% else %}
+                            <li><a href="/editmode">Edit mode: Off</a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}{% endblock %}
+
+    <div class="container-fluid what-we-do-container">
+        <h2 class="editable" data-content-id="home.whatWeDo.title">{{ strings.home.whatWeDo.title }}</h2>
+        <div class="horizontal-break white"></div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 editable" data-content-id="home.whatWeDo.description" data-content-type="html">
+                {{ strings.home.whatWeDo.description|safe }}
+            </div>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/GSStudioLTD" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a href="https://www.linkedin.com/company/gamespace-studio?expanded=true&trk=mini-profile" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a href="https://twitter.com/GameSpaceStudio" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a href="https://plus.google.com/104863312400726939184/posts" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid footer-container">
+
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0">
+                <div class="row">
+                    <div class="col-md-6 footer-left-col">
+                        <span class="editable" data-content-id="footer.address">{{ strings.footer.address }}</span>
+                        <span class="editable orange-text" data-content-id="footer.company">{{ strings.footer.company }}</span>
+                        <a class="editmode" href="/editmode" rel="nofollow">&copy;</a>
+                        <span class="orange-text">{{ thisYear }}</span>
+                        {% if loggedIn %}
+                        <span style="padding-left:15px"><a href="/change-password">Change Password</a></span>
+                        {% endif %}
+                     </div>
+                     <div class="col-md-6 footer-right-col">
+                        <a href="/#games">Games</a>
+                        <a href="/#about">About</a>
+                        <a href="/sayhello">SayHello</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="scrollup">Scroll</a>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/jquery/throttle-debounce.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/dropzone.js"></script>
+    {% if enableEditMode %}
+    <script>
+    (function(window, $, debounce){
+        $('.editable').on('click', function(e) {
+            e.preventDefault();
+        });
+        $('.dropload').dropzone({
+            url: '/editmode/file-upload',
+            sending: function(_, xhr, formData){
+                formData.append('id', $(this.element).data('id'));
+                formData.append('role', $(this.element).data('role'));
+            },
+            complete: function(file) {
+                var responseData = JSON.parse(file.xhr.response);
+                // todo: do not hardcode .jpg extension
+                $(this.element).find('img').attr('src', '/img/proj-'+responseData.id+'.jpg?r='+Date.now());
+                window.location.reload(true);
+            }
+        });
+        $('.delete-project').on('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $.post(
+                '/editmode/delete-project', {
+                    id: $(this).parents('a').data('id')
+                }, function() {
+                    window.location.reload();
+                }
+            );
+        });
+        var editor = new MediumEditor('.editable');
+        editor.subscribe('editableInput', debounce(600, function (event, editable) {
+            var contentId = $(editable).data('content-id');
+            var postUrl = 0 == contentId.indexOf('project:') ? '/editmode/save-project' : '/editmode/save';
+            $.post(postUrl, {
+                'contentId': $(editable).data('content-id'),
+                'content': $(editable).data('content-type') == 'html' ? editable.innerHTML : editable.textContent
+            }, function(resp){
+                if (typeof resp.id != 'undefined') {
+                    $(editable).data('content-id', 'project:' + resp.id);
+                    $(editable).parents('a').data('id', resp.id);
+                }
+            });
+        }));
+    })(window, jQuery, $.debounce);
+    </script>
+    {% endif %}
+    <script>
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 500) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+
+            $('.scrollup').click(function () {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 600);
+                return false;
+            });
+        });
+    </script>
+    {% block footerScript %}{% endblock %}
+  </body>
+</html>
